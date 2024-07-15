@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Blynk</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+<div class="container-fluid">
+<div class="navbar-header">
+ <a class="navbar-brand" href="#">Blynk</a>
+</div>
+</div>
+</nav>
+<div class="container">
+<div class="col-sm-2"><legend>Enter The Token</legend></div>
+<div class="col-sm-3"><input class="form-control" id="focusedInput" type="text"></div>
+  <div class="col-sm-2"><legend>custom server</legend></div>
+<div class="col-sm-3"><input class="form-control" id="csInput" type="text" placeholder="blynk-cloud.com"></div>
+  
+ <div class="col-sm-2">  <button id="sub"  class="btn btn-primary">Submit</button></div>
+</div>
+ <br>
+<div class="container">
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">Project Information</h3>
+  </div>
+  <div class="panel-body">
+<div class="container">
+  <div class="col-sm-3"><label>Project Name :</label></div>
+   <div class="col-sm-9"><label id="pn">------ </label></div>
+  
+    <div class="col-sm-3"><label>Board Type :</label></div>
+   <div class="col-sm-9"><label id="bt">------</label></div>
+
+
+    <div class="col-sm-3"><label>Hardware Status :</label></div>
+   <div class="col-sm-9"><label id="hs">------</label></div>
+   
+</div>
+
+</div>
+    
+  </div>
+</div>
+</div>
+<div class="container ">
+
+ <div class="container">
+<div class="col-sm-2"><legend>Enter Pin No</legend></div>
+<div class="col-sm-2"><input class="form-control" id="epin" type="text"></div>
+ <div class="col-sm-5">  <button id="subpin"  class="btn btn-primary">Add Button</button>
+  <button id="slidepin"  class="btn btn-primary">Add Slider Button</button>
+   </div>
+</div>
+  
+  <br>
+  
+  <div class="text-center" id="adddata">
+
+    
+  </div>
+  
+</div> 
+
+
+
+<script>
+  
+  function ranchang(element){
+     var e =element.id;
+         currentvalue = document.getElementById(e).value;
+    alert(currentvalue);
+    
+    
+     var t =$('#focusedInput').val();
+   var cs =$('#csInput').val();
+   if (cs!="" && cs!=null)
+     {
+
+       var ashow ="http://blynk-cloud.com:8080/"+t+"/update/"+e+"?value="+currentvalue;
+     }else
+       {
+ var ashow ="http://blynk-cloud.com:8080/"+t+"/update/"+e+"?value="+currentvalue;
+       }
+   
+
+
+
+
+   $.getJSON(ashow, function (data) {
+             
+             });
+    
+    
+  }
+  
+  
+  
+  
+  function toggleCheckbox(element)
+ {
+     var e =element.id;
+
+     currentvalue = document.getElementById(e).value;
+  if(currentvalue == "Off"){
+  var c=0
+ document.getElementById(e).value="On";
+     
+  }else{
+      var c=1
+    document.getElementById(e).value="Off";
+  }
+   
+
+    var t =$('#focusedInput').val();
+   var cs =$('#csInput').val();
+   if (cs!="" && cs!=null)
+     {
+
+       var ashow ="http://blynk-cloud.com:8080/"+t+"/update/"+e+"?value="+c;
+     }else
+       {
+ var ashow ="http://blynk-cloud.com:8080/"+t+"/update/"+e+"?value="+c;
+       }
+   
+
+
+
+
+   $.getJSON(ashow, function (data) {
+             
+             });
+ }
+  
+  
+  
+  
+   function remo(element)
+  {
+     var e = "#"+element.id;
+
+    $(e).remove();
+    
+  }
+  
+
+
+  
+</script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
